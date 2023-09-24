@@ -6,11 +6,12 @@ export const getHtml = async(url) => {
         },
         uri: url,
     };
-    requestPromise(options)
+    const response = await requestPromise(options)
         .then(function (data) {
             return data;
         })
         .catch(function (err) {
             return err;
         });
+    return response;
 }
