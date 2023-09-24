@@ -3,11 +3,14 @@ import bodyParser from 'body-parser';
 import {load} from 'cheerio';
 import requestPromise from 'request-promise';
 
+import router from './routes.js';
+
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
+app.use(router);
 
 app.post('/fetch-url', (req, res) => {
     console.log(req.body)
