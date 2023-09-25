@@ -87,13 +87,18 @@ export const fetchAllPages = (url,
         throw new Error;
     } 
 }
-export const fetchAllItems = (url,
+export const fetchAllItems = async(url,
     retry_counter,
     max_retry) => {
-    try {
-        
-        return response;   
-    } catch (error) {
-        throw new Error;
-    } 
+        try {
+            let data;
+            do {
+                data = await getHtml(url);
+                retry_counter++;
+            } while (data === undefined && retry_counter < max_retry);
+            const response = parseData(data, 'fetchAllItems');
+            return response;   
+        } catch (error) {
+            throw new Error;
+        } 
 }

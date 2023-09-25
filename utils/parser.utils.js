@@ -54,10 +54,32 @@ export const parseData = (data, routes) => {
             return details;
            
         case 'fetchAllPages':
-            
+            break;
            
         case 'fetchAllItems':
-            
+            const articles = $('article');
+            // Iterate through each article and extract the description
+            articles.each((index, article) => {
+                // console.log($(article).html());
+                // console.log("==================================================================================");
+                const dataId = $(article).attr('data-id');
+                if (dataId) {
+                    details.data_id = $(article).attr('data-id');
+                    details.url = $(article).find('a').attr('href');
+                    const descriptionText = $(article).find('.ev7e6t88').text().split(' • '); // Adjust the selector as needed
+                    details.power = descriptionText[1];
+                    details.engine = descriptionText[0];
+                    // console.log($(article).find('dd').attr('data-parameter'));
+                     $(article).find('dd').each((index, ddElement) => {
+                        const dataParameter = $(ddElement).attr('data-parameter');
+                        console.log(dataParameter);
+                    });
+                    responseData.push(details);
+                    console.log('===================================================');
+                }
+        
+            });
+            return responseData;
            
         default:
            
