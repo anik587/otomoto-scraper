@@ -13,21 +13,18 @@ export const fetchNextUrl = async (url,
     
             let response = parseData(data, 'fetchNextUrl');
             let pageCount = parseData(data, 'pageSize');
-            console.log(response);
-            console.log(pageCount);     
             /**
             * As otomoto doesn't give way all adresses,
-            * So we have follow this approach 
+            * So we have followed this approach 
+            * For scraping
             */
             if(!response) {
                 const parsedUrl = new URL(url);
                 const currentPage = parseInt(parsedUrl.searchParams.get('page'));
                 if (!isNaN(currentPage)) {
                     const nextPage = currentPage + 1;
-                    console.log(nextPage)
                     if (pageCount >= nextPage){
                         parsedUrl.searchParams.set('page', nextPage);
-                        console.log(parsedUrl.pathname);
                         response = `https://www.otomoto.pl${parsedUrl.pathname}${parsedUrl.search}`;    
                     } else {
                         response = [];
@@ -103,7 +100,6 @@ export const fetchAllPages = async(url,
             let pageCount = parseInt(parseData(data, 'pageSize'), 10);
             new_url = `https://www.otomoto.pl${response}`;
             responseData.push(new_url);
-            console.log(responseData);
             /**
             * As otomoto doesn't give way all adresses,
             * So we have follow this approach 
