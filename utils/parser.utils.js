@@ -6,6 +6,11 @@ export const parseData = (data, routes) => {
     let responseData = [];
     let details = {};
     switch (routes) {
+        case 'pageSize':
+            section = $('.pagination-item__active');
+            const pageSize =  section.nextAll('li.pagination-item').text();
+            return pageSize.replace(/\./g, '');
+
         case 'fetchNextUrl':
             section = $('.pagination-item__active');
             const nextPaginationItem =  section.nextAll('li.pagination-item').first().find('a').attr('href');
@@ -51,11 +56,7 @@ export const parseData = (data, routes) => {
                }
             });
 
-            return details;
-           
-        case 'fetchAllPages':
-            break;
-           
+            return details;        
         case 'fetchAllItems':
             const articles = $('article');
             articles.each((index, article) => {

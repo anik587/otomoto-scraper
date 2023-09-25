@@ -12,7 +12,7 @@ export const fetchNextUrl = async(req, res) => {
             max_retry);
 
         if(response) 
-            return resSend(200, 'Successfully Scraped', `https://www.otomoto.pl${response}`, res);
+            return resSend(200, 'Successfully Scraped', response, res);
 
             return resSend(500, 'Something Went Wrong', [], res);
     } catch (error) {
@@ -23,7 +23,6 @@ export const fetchNextUrl = async(req, res) => {
 
 export const fetchItems = async(req, res) => {
     try {
-[]
         const url = req?.url;
         const retry_counter = req?.retry_counter;
         const max_retry = req?.max_retry;
@@ -42,7 +41,6 @@ export const fetchItems = async(req, res) => {
 
 export const fetchCounts = async(req, res) => {
     try {
-[]
         const url = req?.url;
         const retry_counter = req?.retry_counter;
         const max_retry = req?.max_retry;
@@ -84,7 +82,7 @@ export const fetchAllPages = async(req, res) => {
         const url = req?.url;
         const retry_counter = req?.retry_counter;
         const max_retry = req?.max_retry;
-        const response = await services.fetchItemsDetails(url, 
+        const response = await services.fetchAllPages(url, 
             retry_counter, 
             max_retry);
 

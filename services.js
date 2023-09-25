@@ -12,6 +12,7 @@ export const fetchNextUrl = async (url,
             } while (data === undefined && retry_counter < max_retry);
     
             let response = parseData(data, 'fetchNextUrl');
+            let pageCount = parseData(data, 'pageSize');
             /**
             * As otomoto doesn't give way all adresses,
             * So we have follow this approach 
@@ -19,12 +20,20 @@ export const fetchNextUrl = async (url,
             if(!response) {
                 const parsedUrl = new URL(url);
                 const currentPage = parseInt(parsedUrl.searchParams.get('page'));
-                
                 if (!isNaN(currentPage)) {
                     const nextPage = currentPage + 1;
-                    parsedUrl.searchParams.set('page', nextPage);
-                    response = `${parsedUrl.pathname}${parsedUrl.search}`;
+                    console.log(nextPage)
+                    if (pageCount >= nextPage){
+                        parsedUrl.searchParams.set('page', nextPage);
+                        console.log(parsedUrl.pathname);
+                        response = `https://www.otomoto.pl${parsedUrl.pathname}${parsedUrl.search}`;    
+                    } else {
+                        response = [];
+                    }
+                    
                 }
+            } else {
+                response = `https://www.otomoto.pl${response}`;  
             }
             return response;   
         } catch (error) {
@@ -77,17 +86,7 @@ export const fetchItemsDetails = async(url,
         throw new Error;
     } 
 }
-export const fetchAllPages = (url,
-    retry_counter,
-    max_retry) => {
-    try {
-        
-        return response;   
-    } catch (error) {
-        throw new Error;
-    } 
-}
-export const fetchAllItems = async(url,
+export const fetchAllPages = async(url,
     retry_counter,
     max_retry) => {
         try {
@@ -96,9 +95,53 @@ export const fetchAllItems = async(url,
                 data = await getHtml(url);
                 retry_counter++;
             } while (data === undefined && retry_counter < max_retry);
-            const response = parseData(data, 'fetchAllItems');
+    
+            let response = parseData(data, 'fetchNextUrl');
+            let pageCount = parseData(data, 'pageSize');
+            /**
+            * As otomoto doesn't give way all adresses,
+            * So we have follow this approach 
+            */
+            if(!response) {
+                const parsedUrl = new URL(url);
+                const currentPage = parseInt(parsedUrl.searchParams.get('page'));
+                if (!isNaN(currentPage)) {
+                    const nextPage = currentPage + 1;
+                    console.log(nextPage)
+                    if (pageCount >= nextPage){
+                        parsedUrl.searchParams.set('page', nextPage);
+                        console.log(parsedUrl.pathname);
+                        response = `https://www.otomoto.pl${parsedUrl.pathname}${parsedUrl.search}`;    
+                    } else {
+                        response = [];
+                    }
+                    
+                }
+            } else {
+                response = `https://www.otomoto.pl${response}`;  
+            }
             return response;   
+        
         } catch (error) {
             throw new Error;
-        } 
+        }  
+}
+export const fetchAllItems = async(url,
+    retry_counter,
+    max_retry) => {
+    try {
+        let data;
+        let responseData = [];
+        do {
+            data = await getHtml(url);
+            retry_counter++;
+        } while (data === undefined && retry_counter < max_retry);
+        let response = parseData(data, 'fetchAllItems');
+        response = `https://www.otomoto.pl${response}`;  
+        responseData.push(response);
+        console.log(responseData);
+        return responseData;   
+    } catch (error) {
+        throw new Error;
+    } 
 }
