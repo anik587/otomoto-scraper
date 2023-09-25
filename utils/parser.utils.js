@@ -3,18 +3,25 @@ import {load} from 'cheerio';
 export const parseData = (data, routes) => {
     const $ = load(data);
     let section;
+    let responseData = [];
     switch (routes) {
         case 'fetchNextUrl':
             section = $('.pagination-item__active');
-            console.log(section.html())
             const nextPaginationItem =  section.nextAll('li.pagination-item').first();
             return nextPaginationItem.find('a').attr('href');
 
         case 'fetchItems':
-            section = $('.ooa-1000v3p');
-            console.log(section.html())
-
-            return section.next('a').first().text();
+             
+            $('article.ooa-1t80gpj').each((index, element) => {
+                const dataId = $(element).attr('data-id');
+                const href = $(element).find('a').attr('href');
+                responseData.push({
+                    "#": index + 1,
+                    "id": dataId,
+                    "url": href
+                });
+            });
+            return responseData;
            
         case 'fetchCounts':
             section = $('div.e15pjc9o0 a').first().text();
