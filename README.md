@@ -3,11 +3,11 @@
 This readme provides detailed instructions on setting up and running a Node.js application that includes six APIs for various web scraping tasks. The application can be run natively using Node.js or via Docker using docker-compose. Additionally, a Postman collection is provided for testing the APIs.
 
 ## Table of Contents
-- [Prerequisites]
-- [Installation]
-- [Running the Application]
-- [API Endpoints]
-- [Testing with Postman]
+- [Prerequisites](1)
+- [Installation](2)
+- [Running the Application](3)
+- [API Endpoints](4)
+- [Testing with Postman](5)
 
 ## Prerequisites
 
@@ -24,8 +24,8 @@ Follow these steps to set up the Node.js application:
 Clone the repository to your local machine:
 
 ```
-git clone <repository-url>
-cd <repository-directory>
+git clone https://github.com/anik587/otomoto-scraper
+cd otomoto-scraper
 ```
 Copy the environment configuration file .env.environment to .env:
 ```
@@ -93,3 +93,10 @@ The application provides the following API endpoints:
 A Postman collection has been provided for convenient testing of the application's APIs. Import the collection into Postman and use it to interact with the endpoints. The collection can be found in the repository.
 
 You are now ready to use and test the Node.js application with its six APIs. Choose your preferred method of running the application, and don't forget to check the Postman collection for easy API testing. Happy scraping!
+
+[1]:https://github.com/anik587/otomoto-scraper#prerequisites/
+[2]:https://github.com/anik587/otomoto-scraper#installation
+[3]:https://github.com/anik587/otomoto-scraper#running-the-application
+[4]:https://github.com/anik587/otomoto-scraper#api-endpoints
+[5]:https://github.com/anik587/otomoto-scraper#testing-with-postman
+
