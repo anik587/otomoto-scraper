@@ -90,7 +90,7 @@ The application provides the following API endpoints:
 - Purpose: Fetch all page URLs from a given URL.
 
 ## Testing with Postman
-A Postman collection has been provided for convenient testing of the application's APIs. Import the collection into Postman and use it to interact with the endpoints. The collection can be found in the repository.
+A [Postman collection](https://github.com/anik587/otomoto-scraper/blob/master/otomoto%20scrapper.postman_collection.json) has been provided for convenient testing of the application's APIs. Import the collection into Postman and use it to interact with the endpoints. The collection can be found in the repository.
 
 You are now ready to use and test the Node.js application with its six APIs. Choose your preferred method of running the application, and don't forget to check the Postman collection for easy API testing. Happy scraping!
 
