@@ -58,24 +58,30 @@ export const parseData = (data, routes) => {
            
         case 'fetchAllItems':
             const articles = $('article');
-            // Iterate through each article and extract the description
             articles.each((index, article) => {
-                // console.log($(article).html());
-                // console.log("==================================================================================");
                 const dataId = $(article).attr('data-id');
                 if (dataId) {
                     details.data_id = $(article).attr('data-id');
                     details.url = $(article).find('a').attr('href');
-                    const descriptionText = $(article).find('.ev7e6t88').text().split(' • '); // Adjust the selector as needed
+                    const descriptionText = $(article).find('.ev7e6t88').text().split(' • ');
+                    details.price = $(article).find('.ooa-1wb7q8u h3').text() + $(article).find('.ooa-1wb7q8u p').text(); 
                     details.power = descriptionText[1];
                     details.engine = descriptionText[0];
-                    // console.log($(article).find('dd').attr('data-parameter'));
                      $(article).find('dd').each((index, ddElement) => {
                         const dataParameter = $(ddElement).attr('data-parameter');
-                        console.log(dataParameter);
+                        if(dataParameter === 'mileage') {
+                            details.milage = $(ddElement).text();
+                        } else if(dataParameter === 'fuel_type') {
+                            details.fuel_type = $(ddElement).text()
+                        } else if(dataParameter === 'engine_capacity') {
+                            details.engine_capacity = $(ddElement).text()
+                        } else if(dataParameter === 'engine_power') {
+                            details.engine_power = $(ddElement).text()
+                        } else if(dataParameter === 'year') {
+                            details.year = $(ddElement).text()
+                        }
                     });
                     responseData.push(details);
-                    console.log('===================================================');
                 }
         
             });

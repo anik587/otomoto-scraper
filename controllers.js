@@ -4,7 +4,6 @@ import { resSend } from './utils/index.js';
 
 export const fetchNextUrl = async(req, res) => {
     try {
-[]
         const url = req?.url;
         const retry_counter = req?.retry_counter;
         const max_retry = req?.max_retry;
