@@ -1,4 +1,4 @@
-import { getHtml, parseData, resSend } from './utils/index.js';
+import { getHtml, parseData } from './utils/index.js';
 
 
 export const fetchNextUrl = async (url,
@@ -13,6 +13,8 @@ export const fetchNextUrl = async (url,
     
             let response = parseData(data, 'fetchNextUrl');
             let pageCount = parseData(data, 'pageSize');
+            console.log(response);
+            console.log(pageCount);     
             /**
             * As otomoto doesn't give way all adresses,
             * So we have follow this approach 
@@ -90,7 +92,7 @@ export const fetchAllPages = async(url,
     retry_counter,
     max_retry) => {
         try {
-            let data, new_url;
+            let data, new_url, parsedUrl, currentPage, nextPage;
             let responseData = [];
             do {
                 data = await getHtml(url);
@@ -98,24 +100,25 @@ export const fetchAllPages = async(url,
             } while (data === undefined && retry_counter < max_retry);
     
             let response = parseData(data, 'fetchNextUrl');
-            let pageCount = parseData(data, 'pageSize');
+            let pageCount = parseInt(parseData(data, 'pageSize'), 10);
             new_url = `https://www.otomoto.pl${response}`;
             responseData.push(new_url);
+            console.log(responseData);
             /**
             * As otomoto doesn't give way all adresses,
             * So we have follow this approach 
             */
 
                     do {
-                       const parsedUrl = new URL(new_url);
-                       const currentPage = parseInt(parsedUrl.searchParams.get('page'));
-                       const nextPage = currentPage + 1; 
+                       parsedUrl = new URL(new_url);
+                       currentPage = parseInt(parsedUrl.searchParams.get('page'));
+                       nextPage = currentPage + 1; 
                        parsedUrl.searchParams.set('page', nextPage);
                        new_url = `https://www.otomoto.pl${parsedUrl.pathname}${parsedUrl.search}`
                        responseData.push(new_url);
                     } while (pageCount >= nextPage);
                     
-            return response;   
+            return responseData;   
         
         } catch (error) {
             throw new Error;
@@ -126,16 +129,13 @@ export const fetchAllItems = async(url,
     max_retry) => {
     try {
         let data;
-        let responseData = [];
         do {
             data = await getHtml(url);
             retry_counter++;
         } while (data === undefined && retry_counter < max_retry);
-        let response = parseData(data, 'fetchAllItems');
-        response = `https://www.otomoto.pl${response}`;  
-        responseData.push(response);
-        console.log(responseData);
-        return responseData;   
+
+        let response = parseData(data, 'fetchAllItems'); 
+        return response;   
     } catch (error) {
         throw new Error;
     } 

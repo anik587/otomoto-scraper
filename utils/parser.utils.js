@@ -7,8 +7,8 @@ export const parseData = (data, routes) => {
     let details = {};
     switch (routes) {
         case 'pageSize':
-            section = $('.pagination-item__active');
-            const pageSize =  section.nextAll('li.pagination-item').text();
+            section = $('[data-testid="pagination-list-item"]')
+            const pageSize =  section.last().text();
             return pageSize.replace(/\./g, '');
 
         case 'fetchNextUrl':

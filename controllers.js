@@ -12,11 +12,11 @@ export const fetchNextUrl = async(req, res) => {
             max_retry);
 
         if(response) 
-            return resSend(200, 'Successfully Scraped', response, res);
+            return resSend(200, 'Successfully Scraped! ', response, req, res);
 
-            return resSend(500, 'Something Went Wrong', [], res);
+            return resSend(500, 'Something Went Wrong', [], req, res);
     } catch (error) {
-        return resSend(500, 'Internal Server Error', [], res);
+        return resSend(500, 'Internal Server Error', [], req, res);
     }
 
 }
@@ -31,11 +31,11 @@ export const fetchItems = async(req, res) => {
             max_retry);
 
         if(response) 
-            return resSend(200, 'Successfully Scraped', response, res);
+            return resSend(200, 'Successfully Scraped', response, req, res);
         
-        return resSend(500, 'Something Went Wrong', [], res);
+        return resSend(500, 'Something Went Wrong', [], req, res);
     } catch (error) {
-        return resSend(500, 'Internal Server Error', [], res);
+        return resSend(500, 'Internal Server Error', [], req, res);
     }
 }
 
@@ -49,11 +49,11 @@ export const fetchCounts = async(req, res) => {
             max_retry);
 
         if(response) 
-            return resSend(200, 'Successfully Scraped', response, res);
+            return resSend(200, 'Successfully Scraped', response, req, res);
 
-        return resSend(500, 'Something Went Wrong', [], res);
+        return resSend(500, 'Something Went Wrong', [], req, res);
     } catch (error) {
-        return resSend(500, 'Internal Server Error', [], res);
+        return resSend(500, 'Internal Server Error', [], req, res);
     }
 
 }
@@ -68,11 +68,11 @@ export const fetchItemsDetails = async(req, res) => {
             max_retry);
 
         if(response) 
-            return resSend(200, 'Successfully Scraped', response, res);
+            return resSend(200, 'Successfully Scraped', response, req, res);
 
-        return resSend(500, 'Something Went Wrong', [], res);
+        return resSend(500, 'Something Went Wrong', [], req, res);
     } catch (error) {
-        return resSend(500, 'Internal Server Error', [], res);
+        return resSend(500, 'Internal Server Error', [], req, res);
     }
 
 }
@@ -87,11 +87,11 @@ export const fetchAllPages = async(req, res) => {
             max_retry);
 
         if(response) 
-            return resSend(200, 'Successfully Scraped', response, res);
+            return resSend(200, 'Successfully Scraped', response, req, res);
 
-        return resSend(500, 'Something Went Wrong', [], res);
+        return resSend(500, 'Something Went Wrong', [], req, res);
     } catch (error) {
-        return resSend(500, 'Internal Server Error', [], res);
+        return resSend(500, 'Internal Server Error', [], req, res);
     }
 
 }
@@ -106,11 +106,11 @@ export const fetchAllItems = async(req, res) => {
             max_retry);
 
         if(response) 
-            return resSend(200, 'Successfully Scraped', response, res);
+            return resSend(200, 'Successfully Scraped', response, req, res);
 
-        return resSend(500, 'Something Went Wrong', [], res);
+        return resSend(500, 'Something Went Wrong', [], req, res);
     } catch (error) {
-        return resSend(500, 'Internal Server Error', [error], res);
+        return resSend(500, 'Internal Server Error', [error], req, res);
     }
 
 }
