@@ -4,11 +4,12 @@ export const parseData = (data, routes) => {
     const $ = load(data);
     let section;
     let responseData = [];
+    let details = {};
     switch (routes) {
         case 'fetchNextUrl':
             section = $('.pagination-item__active');
-            const nextPaginationItem =  section.nextAll('li.pagination-item').first();
-            return nextPaginationItem.find('a').attr('href');
+            const nextPaginationItem =  section.nextAll('li.pagination-item').first().find('a').attr('href');
+            return nextPaginationItem;
 
         case 'fetchItems':
              
@@ -28,7 +29,29 @@ export const parseData = (data, routes) => {
             return section.split(' ')[1].replace(/\D/g, '');
            
         case 'fetchItemsDetails':
-            
+            const offerMetaValues = $('.offer-meta__value').map((_, element) => $(element).text()).get();
+
+            details.ad_id = offerMetaValues[1],
+            details.reg_date = offerMetaValues[0],
+            details.price = $('.offer-price__number').first().text().trim().replace(/\s+/g, '')
+
+
+            $('.offer-params__label').each((index, element) => {
+            const text = $(element).text().trim();
+                if (text === 'Rok produkcji') {
+                    details.year_of_production = $(element).next('.offer-params__value').text().trim();
+                } else if (text === 'Przebieg') {
+                    details.mileage = $(element).next('.offer-params__value').text().trim();
+                } else if (text === 'Rodzaj paliwa') {
+                    details.fuel_type = $(element).next('.offer-params__value').text().trim();
+                } else if (text === 'Marka pojazdu') {
+                     details.vehicle_brand = $(element).next('.offer-params__value').text().trim();
+                } else if (text === 'Model pojazdu') {
+                    details.vehicle_model = $(element).next('.offer-params__value').text().trim();
+               }
+            });
+
+            return details;
            
         case 'fetchAllPages':
             

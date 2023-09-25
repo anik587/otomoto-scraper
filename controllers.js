@@ -65,22 +65,10 @@ export const fetchItemsDetails = async(req, res) => {
     try {
         const url = req.url;
         const data = await getHtml(url);
-        const nextPaginationItem = parseData(data);
-        if(nextPaginationItem) 
-            return resSend(200, 'Successfully Scraped', `https://www.otomoto.pl${nextPaginationItem}`, res);
+        const response = parseData(data, 'fetchItemsDetails');
+        if(response) 
+            return resSend(200, 'Successfully Scraped', response, res);
         
-        /**
-         * As otomoto doesn't give way all adresses,
-         * So we have follow this approach 
-         */
-        const parsedUrl = new URL(url);
-        const currentPage = parseInt(parsedUrl.searchParams.get('page'));
-      
-        if (!isNaN(currentPage)) {
-          const nextPage = currentPage + 1;
-          parsedUrl.searchParams.set('page', nextPage);
-          return resSend(200, 'Successfully Scraped', `https://www.otomoto.pl${parsedUrl.pathname}${parsedUrl.search}`, res);
-        }
         return resSend(500, 'Something Went Wrong', [], res);
     } catch (error) {
         return resSend(500, 'Internal Server Error', [], res);
