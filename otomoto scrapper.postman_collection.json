@@ -1,0 +1,238 @@
+{
+	"info": {
+		"_postman_id": "eddab4de-445d-4c4f-bcc1-74956c70549c",
+		"name": "otomoto scrapper",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "217636"
+	},
+	"item": [
+		{
+			"name": "FETCH NEXT URL",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"url\": \"https://www.otomoto.pl/ciezarowe/uzytkowe/mercedes-benz/%20od-2014/q-actros?+search%5Bfilter_enum_damaged%5D=0&search%5Border%5D=created_at+%3Adesc&page=8\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/fetch-next-url",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"fetch-next-url"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FETCH ITEMS",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"url\": \"https://www.otomoto.pl/ciezarowe/uzytkowe/mercedes-benz/%20od-2014/q-actros?+search%5Bfilter_enum_damaged%5D=0&search%5Border%5D=created_at+%3Adesc&page=9\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/fetch-items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"fetch-items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FETCH COUNT",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"url\": \"https://www.otomoto.pl/ciezarowe/uzytkowe/mercedes-benz/%20od-2014/q-actros?+search%5Bfilter_enum_damaged%5D=0&search%5Border%5D=created_at+%3Adesc&page=9\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/fetch-counts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"fetch-counts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FETCH ITEM DETAILS",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"url\": \"https://www.otomoto.pl/ciezarowe/oferta/mercedes-benz-actros-25-45ls-6x2-ciagnik-siodlowy-ID6FC7s1.html\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/fetch-item-details",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"fetch-item-details"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FETCH ALL PAGES",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"url\": \"https://www.otomoto.pl/ciezarowe/uzytkowe/mercedes-benz/ od-2014/q-actros? search%5Bfilter_enum_damaged%5D=0&search%5Border%5D=created_at %3Adesc\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/fetch-all-pages",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"fetch-all-pages"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FETCH ALL ITEMS",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"url\": \"https://www.otomoto.pl/ciezarowe/uzytkowe/mercedes-benz/ od-2014/q-actros? search%5Bfilter_enum_damaged%5D=0&search%5Border%5D=created_at %3Adesc\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/fetch-all-items",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"fetch-all-items"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
