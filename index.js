@@ -22,12 +22,12 @@ app.use((req, res, next) => {
 
 // unregistered route handler
 app.use((req, res, next) => {
-    next(resSend(404, 'Not Found', [], req, res));
+  resSend(404, 'Not Found', [], req, res);
   });
   
   // error handler
   app.use((err, req, res, next) => {
-    next(resSend(500, 'Server Error', [], req, res));
+    resSend(500, 'Server Error', [], req, res);
   });
 
 const port = parseInt(process.env.port, 10) || 3000;
