@@ -4,10 +4,10 @@ This readme provides detailed instructions on setting up and running a Node.js a
 
 ## Table of Contents
 - [Prerequisites](https://github.com/anik587/otomoto-scraper#prerequisites)
-- [Installation](https://github.com/anik587/otomoto-scraper#installation/)
-- [Running the Application](https://github.com/anik587/otomoto-scraper#running-the-application/)
-- [API Endpoints](https://github.com/anik587/otomoto-scraper#api-endpoints/)
-- [Testing with Postman](https://github.com/anik587/otomoto-scraper#testing-with-postman/)
+- [Installation](https://github.com/anik587/otomoto-scraper#installation)
+- [Running the Application](https://github.com/anik587/otomoto-scraper#running-the-application)
+- [API Endpoints](https://github.com/anik587/otomoto-scraper#api-endpoints)
+- [Testing with Postman](https://github.com/anik587/otomoto-scraper#testing-with-postman)
 
 ## Prerequisites
 
