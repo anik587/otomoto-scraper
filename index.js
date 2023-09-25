@@ -14,7 +14,9 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 app.use((req, res, next) => {
   req.retry_counter = 0;
-  req.max_retry = process.env.MAX_RETRY
+  req.max_retry = process.env.MAX_RETRY;
+  req.env = process.env.NODE_ENV;
+  next();
 },router);
 
 // unregistered route handler

@@ -1,29 +1,21 @@
-import { getHtml, parseData, resSend } from './utils/index.js';
+import { error } from 'console';
+import * as services from './services.js';
+import { resSend } from './utils/index.js';
 
 export const fetchNextUrl = async(req, res) => {
     try {
-        const url = req.url;
-        const data = await getHtml(url);
-        const nextPaginationItem = parseData(data, 'fetchNextUrl');
-        if(nextPaginationItem) 
-            return resSend(200, 'Successfully Scraped', `https://www.otomoto.pl${nextPaginationItem}`, res);
+[]
+        const url = req?.url;
+        const retry_counter = req?.retry_counter;
+        const max_retry = req?.max_retry;
+        const response = await services.fetchNextUrl(url, 
+            retry_counter, 
+            max_retry);
 
-        /**
-         * As otomoto doesn't give way all adresses,
-         * So we have follow this approach 
-         */
+        if(response) 
+            return resSend(200, 'Successfully Scraped', `https://www.otomoto.pl${response}`, res);
 
-        const parsedUrl = new URL(url);
-        const currentPage = parseInt(parsedUrl.searchParams.get('page'));
-      
-        if (!isNaN(currentPage)) {
-          const nextPage = currentPage + 1;
-          parsedUrl.searchParams.set('page', nextPage);
-          return resSend(200, 'Successfully Scraped', `https://www.otomoto.pl${parsedUrl.pathname}${parsedUrl.search}`, res);
-        }
-
-        return resSend(500, 'Something Went Wrong', [], res);
-        
+            return resSend(500, 'Something Went Wrong', [], res);
     } catch (error) {
         return resSend(500, 'Internal Server Error', [], res);
     }
@@ -32,25 +24,33 @@ export const fetchNextUrl = async(req, res) => {
 
 export const fetchItems = async(req, res) => {
     try {
-        const url = req.url;
-        const data = await getHtml(url); 
-        const response = parseData(data, 'fetchItems');
+[]
+        const url = req?.url;
+        const retry_counter = req?.retry_counter;
+        const max_retry = req?.max_retry;
+        const response = await services.fetchItems(url, 
+            retry_counter, 
+            max_retry);
+
         if(response) 
             return resSend(200, 'Successfully Scraped', response, res);
         
         return resSend(500, 'Something Went Wrong', [], res);
-
     } catch (error) {
         return resSend(500, 'Internal Server Error', [], res);
     }
-
 }
 
 export const fetchCounts = async(req, res) => {
     try {
-        const url = req.url;
-        const data = await getHtml(url);
-        const response = parseData(data, 'fetchCounts');
+[]
+        const url = req?.url;
+        const retry_counter = req?.retry_counter;
+        const max_retry = req?.max_retry;
+        const response = await services.fetchCounts(url, 
+            retry_counter, 
+            max_retry);
+
         if(response) 
             return resSend(200, 'Successfully Scraped', response, res);
 
@@ -63,12 +63,17 @@ export const fetchCounts = async(req, res) => {
 
 export const fetchItemsDetails = async(req, res) => {
     try {
-        const url = req.url;
-        const data = await getHtml(url);
-        const response = parseData(data, 'fetchItemsDetails');
+[]
+        const url = req?.url;
+        const retry_counter = req?.retry_counter;
+        const max_retry = req?.max_retry;
+        const response = await services.fetchItemsDetails(url, 
+            retry_counter, 
+            max_retry);
+
         if(response) 
             return resSend(200, 'Successfully Scraped', response, res);
-        
+
         return resSend(500, 'Something Went Wrong', [], res);
     } catch (error) {
         return resSend(500, 'Internal Server Error', [], res);
