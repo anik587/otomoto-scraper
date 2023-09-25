@@ -62,6 +62,7 @@ export const parseData = (data, routes) => {
                 const dataId = $(article).attr('data-id');
                 if (dataId) {
                     details.data_id = $(article).attr('data-id');
+                    details.name = $(article).find('h1.ev7e6t89 a').text();
                     details.url = $(article).find('a').attr('href');
                     const descriptionText = $(article).find('.ev7e6t88').text().split(' • ');
                     details.price = $(article).find('.ooa-1wb7q8u h3').text() + $(article).find('.ooa-1wb7q8u p').text(); 
@@ -82,12 +83,14 @@ export const parseData = (data, routes) => {
                         }
                     });
                     responseData.push(details);
+                    details = {};
                 }
         
             });
             return responseData;
            
         default:
+            break;
            
     }
 }
